@@ -1061,7 +1061,8 @@ const map=L.map('map',{zoomControl:false,dragging:false,scrollWheelZoom:false,do
 map.attributionControl.setPrefix('');
 map.fitBounds(L.latLngBounds([[40.4,46.3],[55.6,87.5]]),{padding:[20,20]});
 let loaded=0,errors=0,fallback=null;
-const tiles=L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png',{subdomains:'abcd',maxZoom:19,attribution:'© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> © <a href="https://carto.com/attributions">CARTO</a>'}).addTo(map);
+const tiles=L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}',{maxZoom:16,attribution:'Basemap © Esri, HERE, Garmin, © OpenStreetMap contributors'}).addTo(map);
+L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Reference/MapServer/tile/{z}/{y}/{x}',{maxZoom:16}).addTo(map);
 tiles.on('tileload',()=>{loaded++});
 tiles.on('tileerror',()=>{errors++;if(!loaded&&errors>3&&!fallback)useFallback()});
 // fallback schematic if tiles are unavailable (e.g. preview without network)
